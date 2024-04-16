@@ -1,0 +1,75 @@
+server:
+  port: 8016
+
+spring:
+    application:
+      name: account-service
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://lsetbank-db.lset.uk:3306/account_service
+        username: "clintra-service-user"
+        password: "Ew3256reas@dfrty54R"
+        hikari:
+            initialization-fail-timeout: 0  
+    sql:
+        int:
+          platform: mysql
+          mode: always        
+    jpa:
+        databasePlatform: "org.hibernate.dialect.MySQLDialect"
+        generate-ddl: true
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+    security:
+      oauth2:
+        client:
+          registration:
+            cognito:
+              clientId: clientId
+              clientSecret: clientSecret
+              scope: openid
+              redirect-uri: http://localhost:8080/login/oauth2/code/cognito
+              clientName: clientName
+          provider:
+            cognito:
+              issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3Ur0Sp3kZ
+              user-name-attribute: cognito:username
+
+        resourceserver:
+            jwt:
+              issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3Ur0Sp3kZ
+      
+              
+logging:
+    level:
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type: TRACE
+
+springdoc:
+     api-docs:
+         path: /api-docs
+        
+jasypt:
+    encryptor:
+          password: ${CLINTRA_ENCRYPTION_KEY}
+
+# AWS S3 configuration
+aws:
+    access_key_id: ENC(a5d0J7hGlfvfLvbOWQhDFUaL7c65wSYyyey1LTpdLqlZkdPyoCF1FG1rX2Pw4DwWjSCF9zIVVAXSPYnLtPEXaA==)
+    secret_access_key: ENC(iO09DBJvo/Pai2tGk5S7NV+TyE4dlyUpWUisfuHmcHFbNSejAceqJSgtk68a/xEC2qat9XZ1x0ETLpjwhj4f52qheaqSmBMcnK4tLV99fgE=)
+    s3:
+      bucket: ENC(XfWBr4lOyqVWkr1TYXh94sMXv5bsiSBHuDhjiUAQPHFLejA6nmOxk9Hk8EPrbMp7)
+      region: ENC(f6LRSCFJfK5m9KfkepQAQiD/MLp91UE3Iv9/E+TUSqSdVErRIFIM4qnEfsP46XLZ)
+      
+      
+#Spring Security with Cognito
+uk:
+    lset:
+        service_url: https://lsetbank.lset.uk/location
+        jwt:
+            aws:
+                userPoolId: us-east-1_3Ur0Sp3kZ
+                region: us-east-1
+                
+               
