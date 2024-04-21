@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: account-service 
-          image: zonopact/account-service:1.0.0 # Image that will be used to containers in the cluster
+          image: lsetproject2024/account-service:latest # Image that will be used to containers in the cluster
           imagePullPolicy: Always
           ports:
             - containerPort: 8016 # The port that the container is running on in the cluster
