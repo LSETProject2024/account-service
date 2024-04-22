@@ -39,4 +39,4 @@ spec:
                   name: clintra-secrete-config
                   key: CLINTRA_ENCRYPTION_KEY
       imagePullSecrets:
-        - name: clintracred
+        - name: lsetbankcred
