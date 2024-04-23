@@ -32,11 +32,5 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8016 # The port that the container is running on in the cluster
-          env:      
-            - name: CLINTRA_ENCRYPTION_KEY
-              valueFrom:
-                configMapKeyRef:
-                  name: clintra-secrete-config
-                  key: CLINTRA_ENCRYPTION_KEY
       imagePullSecrets:
         - name: lsetbankcred
