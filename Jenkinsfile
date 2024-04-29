@@ -24,7 +24,7 @@ pipeline {
             }
         }
         
-        stage('File System Scan') {
+        stage('File System Scan all') {
             steps {
                 sh "trivy fs --severity HIGH,CRITICAL --format table -o trivy-fs-report.html ."
             }
